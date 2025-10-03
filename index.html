@@ -16,7 +16,7 @@
       --muted: #7ec9de;
 
       --menu-bg: rgba(13,18,28,0.95);
-      --menu-item-bg: linear-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
+      --menu-item-bg: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
       --menu-text: #001219;
     }
 
@@ -35,10 +35,14 @@
         radial-gradient(1000px 500px at 110% 120%, rgba(0,121,255,.20), transparent 60%),
         radial-gradient(800px 400px at -10% 120%, rgba(0,229,255,.12), transparent 60%),
         var(--bg);
-      /* no extra top/bottom padding here; container and sections control spacing */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;  /* Center on initial load */
+      min-height: 100vh;
     }
 
-    /* Sticky hamburger */
+    /* Sticky hamburger icon */
     .menu-toggle {
       position: fixed;
       top: 24px;
@@ -80,13 +84,15 @@
     .menu-overlay.open {
       display: flex;
     }
+
     .menu-list {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-    .menu-item {
-      padding: 16px 28px;
+
+    .menu-list .menu-item {
+      padding: 12px 24px;
       border-radius: 12px;
       font-size: 20px;
       font-weight: 700;
@@ -96,17 +102,16 @@
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .menu-item:hover {
+    .menu-list .menu-item:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.5) inset,
-                  0 10px 26px rgba(0,183,255,.45),
-                  0 0 80px rgba(0,229,255,.25);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.5) inset,
+        0 10px 26px rgba(0,183,255,.45),
+        0 0 80px rgba(0,229,255,.25);
     }
 
-    /* Landing container (original layout) */
     .container {
       width: min(760px, 92vw);
-      margin: 0 auto;
       background: linear-gradient(180deg, rgba(13,18,28,.7), rgba(9,14,22,.6));
       border-radius: 24px;
       padding: 24px 40px 56px;
@@ -117,15 +122,15 @@
         0 30px 80px rgba(0,0,0,.6),
         0 0 120px rgba(0,229,255,.12);
       text-align: center;
+      /* Because we have body centering, this container will be centered vertically on load */
     }
 
     .hero-logo {
       width: min(320px, 70%);
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1/1;
       object-fit: contain;
       margin: 12px auto 8px;
-      filter: drop-shadow(0 0 18px rgba(0,229,255,.45))
-             drop-shadow(0 0 40px rgba(0,183,255,.18));
+      filter: drop-shadow(0 0 18px rgba(0,229,255,.45)) drop-shadow(0 0 40px rgba(0,183,255,.18));
       animation: float 4s ease-in-out infinite;
     }
     @keyframes float {
@@ -192,7 +197,6 @@
       opacity: .85;
     }
 
-    /* Scrollable sections styles */
     .section {
       min-height: 100vh;
       padding: 100px 20px 80px;
@@ -221,14 +225,12 @@
   </style>
 </head>
 <body>
-  <!-- Hamburger toggle -->
   <div class="menu-toggle" id="menuToggle">
     <span></span>
     <span></span>
     <span></span>
   </div>
 
-  <!-- Menu overlay -->
   <div class="menu-overlay" id="menuOverlay">
     <div class="menu-list">
       <a href="#what-is-ai" class="menu-item">What is AI</a>
@@ -239,7 +241,6 @@
     </div>
   </div>
 
-  <!-- Landing / hero -->
   <div class="container">
     <img class="hero-logo" src="./images/NUT_N_LOGO_.png" alt="NUT digital logo">
     <h1>NUT | M.R. Notenboom</h1>
@@ -265,26 +266,25 @@
     <p class="footer">The AI era is here, welcome to the adventure ✨</p>
   </div>
 
-  <!-- Scrollable sections -->
   <section class="section" id="what-is-ai">
     <h2>What is AI?</h2>
-    <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines, including learning, reasoning, and adaptation.</p>
+    <p>Artificial Intelligence (AI) refers to simulation of human intelligence by machines: learning, reasoning, adaptation.</p>
   </section>
   <section class="section" id="impact-of-ai">
     <h2>Impact of AI</h2>
-    <p>AI touches industry, society, health, and everyday life. It speeds tasks, augments capacity, and raises ethical questions.</p>
+    <p>AI is reshaping industries, improving efficiency, influencing society, and changing daily life.</p>
   </section>
   <section class="section" id="future-of-ai">
     <h2>Future of AI</h2>
-    <p>Advances will bring more autonomy, integration, and challenges around control, trust, and responsibility.</p>
+    <p>The future brings advances, challenges, and deeper integration into our world.</p>
   </section>
   <section class="section" id="ai-applications">
     <h2>AI Applications</h2>
-    <p>From natural language processing to robotics, AI applications are broad across sectors: healthcare, finance, creativity, and more.</p>
+    <p>From healthcare to entertainment, AI applications are vast and growing across fields.</p>
   </section>
   <section class="section" id="how-to-use-ai">
     <h2>How to use AI</h2>
-    <p>Get started by using existing AI tools, learning fundamentals like prompt design, and building small experiments.</p>
+    <p>Start with tools, experiment with prompts, learn basics, and build your own mini-projects.</p>
   </section>
 
   <script>
@@ -306,9 +306,11 @@
       });
 
       menuItems.forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (e) => {
+          // close the menu when clicked
           menuToggle.classList.remove('open');
           menuOverlay.classList.remove('open');
+          // Let the browser scroll to the anchor target naturally
         });
       });
     })();
