@@ -5,90 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NUT | M.R. Notenboom</title>
   <link rel="icon" type="image/png" sizes="32x32" href="./images/mini_logo.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="./images/mini_logo.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/mini_logo.png">
-  <meta name="theme-color" content="#0A0F16"/>
   <style>
     :root {
       --bg: #0a0f16;
       --neon: #00e5ff;
-      --neon-2: #00b7ff;
-      --ink: #dff9ff;
-      --muted: #7ec9de;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
     body {
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Arial;
-      color: var(--ink);
-      background:
-        radial-gradient(1200px 600px at 50% -10%, rgba(0,229,255,.18), transparent 60%),
-        radial-gradient(1000px 500px at 110% 120%, rgba(0,121,255,.20), transparent 60%),
-        radial-gradient(800px 400px at -10% 120%, rgba(0,229,255,.12), transparent 60%),
-        var(--bg);
-      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: #dff9ff;
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(0,229,255,.18), transparent 60%),
+                  radial-gradient(1000px 500px at 110% 120%, rgba(0,121,255,.20), transparent 60%),
+                  var(--bg);
+      overflow-x: hidden;
     }
-
+    
+    /* 3D Hexagon Hero */
+    .hex-hero {
+      position: fixed;
+      top: 100px; right: 8%;
+      z-index: 5;
+      transform-style: preserve-3d;
+      perspective: 1200px;
+      animation: hexFloat 6s ease-in-out infinite;
+    }
+    @keyframes hexFloat {
+      50% { transform: translateY(-20px) translateZ(30px); }
+    }
+    .hex-container {
+      width: 280px; height: 280px;
+      transform-style: preserve-3d;
+      transform: rotateX(-15deg) rotateY(25deg);
+      animation: hexRotate 20s linear infinite;
+    }
+    @keyframes hexRotate {
+      to { transform: rotateX(-15deg) rotateY(25deg) rotateZ(360deg); }
+    }
+    .hex-3d {
+      position: absolute; width: 100%; height: 100%;
+      filter: drop-shadow(0 20px 60px rgba(0,217,255,0.5));
+    }
+    .hex-layer-1 { transform: translateZ(60px); }
+    .hex-layer-2 { transform: translateZ(40px); opacity: 0.7; }
+    .hex-layer-3 { transform: translateZ(20px); opacity: 0.4; }
+    .ai-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) translateZ(80px);
+      font-size: 70px; font-weight: 900;
+      color: #00d9ff;
+      text-shadow: 0 0 40px rgba(0,217,255,0.8);
+      animation: aiGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes aiGlow {
+      to { text-shadow: 0 0 60px rgba(0,217,255,1); }
+    }
+    
+    /* Main content */
     .hero-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       padding: 32px;
+      z-index: 10;
+      position: relative;
     }
-
     .container {
       width: min(760px, 92vw);
       background: linear-gradient(180deg, rgba(13,18,28,.7), rgba(9,14,22,.6));
       border-radius: 24px;
       padding: 24px 40px 56px;
-      position: relative;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(0,229,255,.25) inset,
-        0 30px 80px rgba(0,0,0,.6),
-        0 0 120px rgba(0,229,255,.12);
+      box-shadow: 0 0 0 1px rgba(0,229,255,.25) inset, 0 30px 80px rgba(0,0,0,.6);
       text-align: center;
     }
-
     .hero-logo {
       width: min(320px, 70%);
-      aspect-ratio: 1 / 1;
-      display: block;
-      margin: 12px auto 8px;
-      object-fit: contain;
-      filter:
-        drop-shadow(0 0 18px rgba(0,229,255,.45))
-        drop-shadow(0 0 40px rgba(0,183,255,.18));
+      aspect-ratio: 1;
+      margin: 12px auto;
+      filter: drop-shadow(0 0 18px rgba(0,229,255,.45));
       animation: float 4s ease-in-out infinite;
     }
-
     @keyframes float {
       50% { transform: translateY(-6px); }
     }
-
     h1 {
       font-size: 42px;
       font-weight: 800;
-      letter-spacing: .4px;
-      text-align: center;
       text-shadow: 0 0 20px rgba(0,229,255,.25);
       margin-top: 6px;
     }
-
     .tagline {
-      text-align: center;
       margin: 6px 0 14px;
-      color: var(--muted);
+      color: #7ec9de;
       font-size: 18px;
     }
-
     .links {
       display: flex;
       flex-wrap: wrap;
@@ -96,79 +107,48 @@
       justify-content: center;
       margin-top: 20px;
     }
-
     .link-btn {
       display: inline-flex;
-      align-items: center;
       gap: 10px;
       padding: 12px 20px;
       border-radius: 12px;
       color: #001219;
       text-decoration: none;
       font-weight: 700;
-      background: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
-      box-shadow:
-        0 0 0 1px rgba(0,229,255,.35) inset,
-        0 8px 24px rgba(0,183,255,.35),
-        0 0 60px rgba(0,229,255,.18);
-      transition: .2s transform, .2s box-shadow, .2s filter;
+      background: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, #00b7ff 60%, #0091ff 100%);
+      box-shadow: 0 8px 24px rgba(0,183,255,.35);
+      transition: transform 0.2s;
     }
-
     .link-btn:hover {
       transform: translateY(-2px) scale(1.02);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.5) inset,
-        0 10px 26px rgba(0,183,255,.45),
-        0 0 80px rgba(0,229,255,.25);
-      filter: saturate(1.1);
     }
-
-    .link-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: #001219;
-    }
-
     .footer {
       margin-top: 40px;
-      text-align: center;
       color: #8adfff;
       font-size: 14px;
       opacity: .85;
     }
-
-    /* Hamburger */
+    
+    /* Menu */
     .menu-toggle {
       position: fixed;
-      top: 24px;
-      left: 24px;
-      width: 32px;
-      height: 24px;
+      top: 24px; left: 24px;
+      width: 32px; height: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
       z-index: 1001;
     }
-
     .menu-toggle span {
-      display: block;
       height: 4px;
-      background-color: var(--neon);
+      background: var(--neon);
       border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
+      transition: 0.3s;
     }
-
-    .menu-toggle.open span:nth-child(1) {
-      transform: translateY(10px) rotate(45deg);
-    }
-    .menu-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.open span:nth-child(3) {
-      transform: translateY(-10px) rotate(-45deg);
-    }
-
+    .menu-toggle.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
     .menu-overlay {
       position: fixed;
       inset: 0;
@@ -176,40 +156,28 @@
       display: none;
       z-index: 1000;
     }
-
-    .menu-overlay.open {
-      display: block;
-    }
-
+    .menu-overlay.open { display: block; }
     .menu-list {
       position: absolute;
-      top: 70px;
-      left: 24px;
+      top: 70px; left: 24px;
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-
     .menu-item {
       padding: 12px 24px;
       border-radius: 12px;
       font-size: 18px;
       font-weight: 700;
       color: #001219;
-      background: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
+      background: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, #00b7ff 60%, #0091ff 100%);
       text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: 0.2s;
       white-space: nowrap;
     }
-
     .menu-item:hover {
       transform: translateY(-2px);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.5) inset,
-        0 10px 26px rgba(0,183,255,.45),
-        0 0 80px rgba(0,229,255,.25);
     }
-
     .section {
       min-height: 100vh;
       padding: 100px 20px 80px;
@@ -218,38 +186,62 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      z-index: 10;
+      position: relative;
     }
-
     .section h2 {
       font-size: 32px;
       margin-bottom: 20px;
       text-shadow: 0 0 10px rgba(0,229,255,.2);
     }
-
     .section p {
       max-width: 60ch;
       font-size: 18px;
       line-height: 1.6;
       color: #c5f6ff;
     }
-
+    @media (max-width: 900px) {
+      .hex-hero { display: none; }
+    }
     @media (max-width: 600px) {
       h1 { font-size: 34px; }
       .tagline { font-size: 16px; }
     }
   </style>
 </head>
-
 <body>
 
-<!-- Hamburger -->
-<div class="menu-toggle" id="menuToggle">
-  <span></span>
-  <span></span>
-  <span></span>
+<div class="hex-hero">
+  <div class="hex-container">
+    <svg class="hex-3d hex-layer-3" viewBox="0 0 200 200">
+      <polygon points="100,10 170,50 170,130 100,170 30,130 30,50" 
+               fill="rgba(0,217,255,0.15)" stroke="rgba(0,217,255,0.5)" stroke-width="2.5"/>
+    </svg>
+    <svg class="hex-3d hex-layer-2" viewBox="0 0 200 200">
+      <polygon points="100,10 170,50 170,130 100,170 30,130 30,50" 
+               fill="rgba(0,217,255,0.2)" stroke="rgba(0,217,255,0.7)" stroke-width="3"/>
+    </svg>
+    <svg class="hex-3d hex-layer-1" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:rgba(0,217,255,0.4)"/>
+          <stop offset="100%" style="stop-color:rgba(0,191,255,0.6)"/>
+        </linearGradient>
+      </defs>
+      <polygon points="100,10 170,50 170,130 100,170 30,130 30,50" 
+               fill="url(#hexGrad)" stroke="#00d9ff" stroke-width="4"/>
+      <circle cx="80" cy="60" r="2" fill="#00d9ff" opacity="0.6"/>
+      <circle cx="120" cy="80" r="2" fill="#00d9ff" opacity="0.6"/>
+      <line x1="80" y1="60" x2="120" y2="80" stroke="#00d9ff" stroke-width="1" opacity="0.4"/>
+    </svg>
+    <div class="ai-text">AI</div>
+  </div>
 </div>
 
-<!-- Menu Overlay -->
+<div class="menu-toggle" id="menuToggle">
+  <span></span><span></span><span></span>
+</div>
+
 <div class="menu-overlay" id="menuOverlay">
   <div class="menu-list">
     <a href="#top" class="menu-item">Home</a>
@@ -261,33 +253,29 @@
   </div>
 </div>
 
-<!-- Hero -->
 <main class="hero-wrapper" id="top">
   <div class="container">
     <img class="hero-logo" src="./images/NUT_N_LOGO_.png" alt="NUT digital logo">
     <h1>NUT | M.R. Notenboom</h1>
     <p class="tagline">Exploring AI-driven business solutions and sharing the journey</p>
-
     <div class="links">
-      <a href="mailto:info@mrnut.org" class="link-btn" aria-label="Email">📧 Email</a>
-      <a href="https://linkedin.com/in/riesnotenboom" class="link-btn" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/Sincx79" class="link-btn" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://twitter.com/Sincx79" class="link-btn" target="_blank" rel="noopener">Twitter</a>
+      <a href="mailto:info@mrnut.org" class="link-btn">📧 Email</a>
+      <a href="https://linkedin.com/in/riesnotenboom" class="link-btn" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Sincx79" class="link-btn" target="_blank">GitHub</a>
+      <a href="https://twitter.com/Sincx79" class="link-btn" target="_blank">Twitter</a>
     </div>
-
     <p class="footer">The AI era is here, welcome to the adventure ✨</p>
   </div>
 </main>
 
-<!-- Sections -->
 <section class="section" id="what-is-ai">
   <h2>What is AI?</h2>
-  <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines — learning, reasoning, adaptation.</p>
+  <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines - learning, reasoning, adaptation.</p>
 </section>
 
 <section class="section" id="impact-of-ai">
   <h2>Impact of AI</h2>
-  <p>AI transforms industries, society, workflows, ethics — its impact is broad and deep.</p>
+  <p>AI transforms industries, society, workflows, ethics - its impact is broad and deep.</p>
 </section>
 
 <section class="section" id="future-of-ai">
@@ -297,7 +285,7 @@
 
 <section class="section" id="ai-applications">
   <h2>AI Applications</h2>
-  <p>From health to finance, art to agriculture — AI is applied everywhere.</p>
+  <p>From health to finance, art to agriculture - AI is applied everywhere.</p>
 </section>
 
 <section class="section" id="how-to-use-ai">
@@ -306,27 +294,27 @@
 </section>
 
 <script>
-  const menuToggle = document.getElementById('menuToggle');
-  const menuOverlay = document.getElementById('menuOverlay');
-  const menuItems = document.querySelectorAll('.menu-item');
-
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('open');
-    menuOverlay.classList.toggle('open');
-  });
-
-  menuOverlay.addEventListener('click', (e) => {
-    if (e.target === menuOverlay) {
-      menuToggle.classList.remove('open');
-      menuOverlay.classList.remove('open');
+  const toggle = document.getElementById('menuToggle');
+  const overlay = document.getElementById('menuOverlay');
+  const items = document.querySelectorAll('.menu-item');
+  
+  toggle.onclick = () => {
+    toggle.classList.toggle('open');
+    overlay.classList.toggle('open');
+  };
+  
+  overlay.onclick = (e) => {
+    if (e.target === overlay) {
+      toggle.classList.remove('open');
+      overlay.classList.remove('open');
     }
-  });
-
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      menuToggle.classList.remove('open');
-      menuOverlay.classList.remove('open');
-    });
+  };
+  
+  items.forEach(item => {
+    item.onclick = () => {
+      toggle.classList.remove('open');
+      overlay.classList.remove('open');
+    };
   });
 </script>
 
