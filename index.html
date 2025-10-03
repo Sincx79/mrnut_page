@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" sizes="192x192" href="./images/mini_logo.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./images/mini_logo.png">
   <meta name="theme-color" content="#0A0F16"/>
-
   <style>
     :root {
       --bg: #0a0f16;
@@ -27,16 +26,118 @@
 
     body {
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Arial;
-      min-height: 100vh;
       color: var(--ink);
       background:
         radial-gradient(1200px 600px at 50% -10%, rgba(0,229,255,.18), transparent 60%),
         radial-gradient(1000px 500px at 110% 120%, rgba(0,121,255,.20), transparent 60%),
         radial-gradient(800px 400px at -10% 120%, rgba(0,229,255,.12), transparent 60%),
         var(--bg);
-      display: block;
+      margin: 0;
     }
 
+    .hero-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 32px;
+    }
+
+    .container {
+      width: min(760px, 92vw);
+      background: linear-gradient(180deg, rgba(13,18,28,.7), rgba(9,14,22,.6));
+      border-radius: 24px;
+      padding: 24px 40px 56px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(0,229,255,.25) inset,
+        0 30px 80px rgba(0,0,0,.6),
+        0 0 120px rgba(0,229,255,.12);
+      text-align: center;
+    }
+
+    .hero-logo {
+      width: min(320px, 70%);
+      aspect-ratio: 1 / 1;
+      display: block;
+      margin: 12px auto 8px;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 0 18px rgba(0,229,255,.45))
+        drop-shadow(0 0 40px rgba(0,183,255,.18));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      50% { transform: translateY(-6px); }
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: .4px;
+      text-align: center;
+      text-shadow: 0 0 20px rgba(0,229,255,.25);
+      margin-top: 6px;
+    }
+
+    .tagline {
+      text-align: center;
+      margin: 6px 0 14px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      color: #001219;
+      text-decoration: none;
+      font-weight: 700;
+      background: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
+      box-shadow:
+        0 0 0 1px rgba(0,229,255,.35) inset,
+        0 8px 24px rgba(0,183,255,.35),
+        0 0 60px rgba(0,229,255,.18);
+      transition: .2s transform, .2s box-shadow, .2s filter;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.5) inset,
+        0 10px 26px rgba(0,183,255,.45),
+        0 0 80px rgba(0,229,255,.25);
+      filter: saturate(1.1);
+    }
+
+    .link-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #001219;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #8adfff;
+      font-size: 14px;
+      opacity: .85;
+    }
+
+    /* Hamburger */
     .menu-toggle {
       position: fixed;
       top: 24px;
@@ -103,97 +204,10 @@
 
     .menu-item:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.5) inset, 0 10px 26px rgba(0,183,255,.45), 0 0 80px rgba(0,229,255,.25);
-    }
-
-    .hero-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 32px;
-    }
-
-    .container {
-      width: min(760px, 92vw);
-      background: linear-gradient(180deg, rgba(13,18,28,.7), rgba(9,14,22,.6));
-      border-radius: 24px;
-      padding: 24px 40px 56px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(0,229,255,.25) inset, 0 30px 80px rgba(0,0,0,.6), 0 0 120px rgba(0,229,255,.12);
-      text-align: center;
-    }
-
-    .hero-logo {
-      width: min(320px, 70%);
-      aspect-ratio: 1 / 1;
-      display: block;
-      margin: 12px auto 8px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 18px rgba(0,229,255,.45)) drop-shadow(0 0 40px rgba(0,183,255,.18));
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      50% { transform: translateY(-6px); }
-    }
-
-    h1 {
-      font-size: 42px;
-      font-weight: 800;
-      letter-spacing: .4px;
-      text-align: center;
-      text-shadow: 0 0 20px rgba(0,229,255,.25);
-      margin-top: 6px;
-    }
-
-    .tagline {
-      text-align: center;
-      margin: 6px 0 14px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-    }
-
-    .link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      color: #001219;
-      text-decoration: none;
-      font-weight: 700;
-      background: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
-      box-shadow: 0 0 0 1px rgba(0,229,255,.35) inset, 0 8px 24px rgba(0,183,255,.35), 0 0 60px rgba(0,229,255,.18);
-      transition: .2s transform, .2s box-shadow, .2s filter;
-    }
-
-    .link-btn:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.5) inset, 0 10px 26px rgba(0,183,255,.45), 0 0 80px rgba(0,229,255,.25);
-      filter: saturate(1.1);
-    }
-
-    .link-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: #001219;
-    }
-
-    .footer {
-      margin-top: 40px;
-      text-align: center;
-      color: #8adfff;
-      font-size: 14px;
-      opacity: .85;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.5) inset,
+        0 10px 26px rgba(0,183,255,.45),
+        0 0 80px rgba(0,229,255,.25);
     }
 
     .section {
@@ -225,92 +239,96 @@
     }
   </style>
 </head>
+
 <body>
 
-  <div class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
+<!-- Hamburger -->
+<div class="menu-toggle" id="menuToggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-list">
+    <a href="#top" class="menu-item">Home</a>
+    <a href="#what-is-ai" class="menu-item">What is AI</a>
+    <a href="#impact-of-ai" class="menu-item">Impact of AI</a>
+    <a href="#future-of-ai" class="menu-item">Future of AI</a>
+    <a href="#ai-applications" class="menu-item">AI Applications</a>
+    <a href="#how-to-use-ai" class="menu-item">How to Use AI</a>
   </div>
+</div>
 
-  <div class="menu-overlay" id="menuOverlay">
-    <div class="menu-list">
-      <a href="#" class="menu-item" id="menu-home">Home</a>
-      <a href="#what-is-ai" class="menu-item">What is AI</a>
-      <a href="#impact-of-ai" class="menu-item">Impact of AI</a>
-      <a href="#future-of-ai" class="menu-item">Future of AI</a>
-      <a href="#ai-applications" class="menu-item">AI Applications</a>
-      <a href="#how-to-use-ai" class="menu-item">How to Use AI</a>
+<!-- Hero -->
+<main class="hero-wrapper" id="top">
+  <div class="container">
+    <img class="hero-logo" src="./images/NUT_N_LOGO_.png" alt="NUT digital logo">
+    <h1>NUT | M.R. Notenboom</h1>
+    <p class="tagline">Exploring AI-driven business solutions and sharing the journey</p>
+
+    <div class="links">
+      <a href="mailto:info@mrnut.org" class="link-btn" aria-label="Email">📧 Email</a>
+      <a href="https://linkedin.com/in/riesnotenboom" class="link-btn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Sincx79" class="link-btn" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://twitter.com/Sincx79" class="link-btn" target="_blank" rel="noopener">Twitter</a>
     </div>
+
+    <p class="footer">The AI era is here, welcome to the adventure ✨</p>
   </div>
+</main>
 
-  <main class="hero-wrapper">
-    <div class="container" id="top">
-      <img class="hero-logo" src="./images/NUT_N_LOGO_.png" alt="NUT digital logo">
-      <h1>NUT | M.R. Notenboom</h1>
-      <p class="tagline">Exploring AI-driven business solutions and sharing the journey</p>
-      <div class="links">
-        <a href="mailto:info@mrnut.org" class="link-btn" aria-label="Email">Email</a>
-        <a href="https://linkedin.com/in/riesnotenboom" class="link-btn" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/Sincx79" class="link-btn" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://twitter.com/Sincx79" class="link-btn" target="_blank" rel="noopener">Twitter</a>
-      </div>
-      <p class="footer">The AI era is here, welcome to the adventure ✨</p>
-    </div>
-  </main>
+<!-- Sections -->
+<section class="section" id="what-is-ai">
+  <h2>What is AI?</h2>
+  <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines — learning, reasoning, adaptation.</p>
+</section>
 
-  <section class="section" id="what-is-ai">
-    <h2>What is AI?</h2>
-    <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines — learning, reasoning, adaptation.</p>
-  </section>
-  <section class="section" id="impact-of-ai">
-    <h2>Impact of AI</h2>
-    <p>AI transforms industries, society, workflows, ethics — its impact is broad and deep.</p>
-  </section>
-  <section class="section" id="future-of-ai">
-    <h2>Future of AI</h2>
-    <p>The future holds autonomous systems, ethical challenges, and deeper integration into daily life.</p>
-  </section>
-  <section class="section" id="ai-applications">
-    <h2>AI Applications</h2>
-    <p>From health to finance, art to agriculture — AI is applied everywhere.</p>
-  </section>
-  <section class="section" id="how-to-use-ai">
-    <h2>How to Use AI</h2>
-    <p>Start small: use existing tools, learn prompts, experiment, build step by step.</p>
-  </section>
+<section class="section" id="impact-of-ai">
+  <h2>Impact of AI</h2>
+  <p>AI transforms industries, society, workflows, ethics — its impact is broad and deep.</p>
+</section>
 
-  <script>
-    (function(){
-      const menuToggle = document.getElementById('menuToggle');
-      const menuOverlay = document.getElementById('menuOverlay');
-      const menuItems = document.querySelectorAll('.menu-item');
-      const homeBtn = document.getElementById('menu-home');
+<section class="section" id="future-of-ai">
+  <h2>Future of AI</h2>
+  <p>The future holds autonomous systems, ethical challenges, and deeper integration into daily life.</p>
+</section>
 
-      menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('open');
-        menuOverlay.classList.toggle('open');
-      });
+<section class="section" id="ai-applications">
+  <h2>AI Applications</h2>
+  <p>From health to finance, art to agriculture — AI is applied everywhere.</p>
+</section>
 
-      menuOverlay.addEventListener('click', (e) => {
-        if (e.target === menuOverlay) {
-          menuToggle.classList.remove('open');
-          menuOverlay.classList.remove('open');
-        }
-      });
+<section class="section" id="how-to-use-ai">
+  <h2>How to Use AI</h2>
+  <p>Start small: use existing tools, learn prompts, experiment, build step by step.</p>
+</section>
 
-      menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          menuToggle.classList.remove('open');
-          menuOverlay.classList.remove('open');
-          if (item === homeBtn) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            e.preventDefault();
-          }
-        });
-      });
-    })();
-  </script>
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    menuOverlay.classList.toggle('open');
+  });
+
+  menuOverlay.addEventListener('click', (e) => {
+    if (e.target === menuOverlay) {
+      menuToggle.classList.remove('open');
+      menuOverlay.classList.remove('open');
+    }
+  });
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuToggle.classList.remove('open');
+      menuOverlay.classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>
