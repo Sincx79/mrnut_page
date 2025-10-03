@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NUT | M.R. Notenboom</title>
   <link rel="icon" type="image/png" sizes="32x32" href="./images/mini_logo.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./images/mini_logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/mini_logo.png">
   <meta name="theme-color" content="#0A0F16"/>
 
   <style>
@@ -14,10 +16,6 @@
       --neon-2: #00b7ff;
       --ink: #dff9ff;
       --muted: #7ec9de;
-
-      --menu-bg: rgba(13,18,28,0.95);
-      --menu-item-bg: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
-      --menu-text: #001219;
     }
 
     * {
@@ -27,13 +25,9 @@
       scroll-behavior: smooth;
     }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-    }
-
     body {
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Arial;
+      min-height: 100vh;
       color: var(--ink);
       background:
         radial-gradient(1200px 600px at 50% -10%, rgba(0,229,255,.18), transparent 60%),
@@ -44,10 +38,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
     }
 
-    /* Hamburger toggle */
+    /* Sticky hamburger icon */
     .menu-toggle {
       position: fixed;
       top: 24px;
@@ -60,6 +53,7 @@
       cursor: pointer;
       z-index: 1001;
     }
+
     .menu-toggle span {
       display: block;
       height: 4px;
@@ -67,6 +61,7 @@
       border-radius: 2px;
       transition: transform 0.3s, opacity 0.3s;
     }
+
     .menu-toggle.open span:nth-child(1) {
       transform: translateY(10px) rotate(45deg);
     }
@@ -80,7 +75,7 @@
     .menu-overlay {
       position: fixed;
       inset: 0;
-      background: var(--menu-bg);
+      background: rgba(13,18,28,0.95);
       display: none;
       z-index: 1000;
     }
@@ -96,14 +91,14 @@
       flex-direction: column;
       gap: 12px;
     }
+
     .menu-item {
       padding: 12px 24px;
       border-radius: 12px;
       font-size: 18px;
       font-weight: 700;
-      color: var(--menu-text);
-      background: var(--menu-item-bg);
-      text-align: center;
+      color: #001219;
+      background: radial-gradient(200% 200% at 0% 0%, var(--neon) 0 30%, var(--neon-2) 60%, #0091ff 100%);
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
       white-space: nowrap;
@@ -116,7 +111,7 @@
         0 0 80px rgba(0,229,255,.25);
     }
 
-    /* Landing / hero container (centered) */
+    /* The hero / landing container (should match your original) */
     .container {
       width: min(760px, 92vw);
       background: linear-gradient(180deg, rgba(13,18,28,.7), rgba(9,14,22,.6));
@@ -134,9 +129,12 @@
     .hero-logo {
       width: min(320px, 70%);
       aspect-ratio: 1 / 1;
-      object-fit: contain;
+      display: block;
       margin: 12px auto 8px;
-      filter: drop-shadow(0 0 18px rgba(0,229,255,.45)) drop-shadow(0 0 40px rgba(0,183,255,.18));
+      object-fit: contain;
+      filter:
+        drop-shadow(0 0 18px rgba(0,229,255,.45))
+        drop-shadow(0 0 40px rgba(0,183,255,.18));
       animation: float 4s ease-in-out infinite;
     }
     @keyframes float {
@@ -151,6 +149,7 @@
       text-shadow: 0 0 20px rgba(0,229,255,.25);
       margin-top: 6px;
     }
+
     .tagline {
       text-align: center;
       margin: 6px 0 14px;
@@ -164,6 +163,7 @@
       gap: 14px;
       justify-content: center;
     }
+
     .link-btn {
       display: inline-flex;
       align-items: center;
@@ -230,51 +230,56 @@
   </style>
 </head>
 <body>
+  <!-- Hamburger icon -->
   <div class="menu-toggle" id="menuToggle">
     <span></span>
     <span></span>
     <span></span>
   </div>
 
+  <!-- Overlay for menu items -->
   <div class="menu-overlay" id="menuOverlay">
     <div class="menu-list">
       <a href="#" class="menu-item" id="menu-home">Home</a>
       <a href="#what-is-ai" class="menu-item">What is AI</a>
       <a href="#impact-of-ai" class="menu-item">Impact of AI</a>
-      <a href="#future-of-ai" class class="menu-item">Future of AI</a>
+      <a href="#future-of-ai" class="menu-item">Future of AI</a>
       <a href="#ai-applications" class="menu-item">AI Applications</a>
-      <a href="#how-to-use-ai" class="menu-item">How to use AI</a>
+      <a href="#how-to-use-ai" class="menu-item">How to Use AI</a>
     </div>
   </div>
 
+  <!-- Landing / hero -->
   <div class="container" id="top">
     <img class="hero-logo" src="./images/NUT_N_LOGO_.png" alt="NUT digital logo">
     <h1>NUT | M.R. Notenboom</h1>
-    <p class="tagline">Exploring AI‑driven business solutions and sharing the journey</p>
+    <p class="tagline">Exploring AI-driven business solutions and sharing the journey</p>
+
     <div class="links">
       <a href="mailto:info@mrnut.org" class="link-btn" aria-label="Email">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
         Email
       </a>
       <a href="https://linkedin.com/in/riesnotenboom" class="link-btn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M19 0H5A5 5 0 0 0 0 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5Zm-11 19H5V8h3v11ZM6.5 6.7A1.75 1.75 0 1 1 6.5 3.2a1.75 1.75 0 0 1 0 3.5ZM20 19h-3v-5.6c0-3.37-4-3.11-4 0V19h-3V8h3v1.8c1.4-2.59 7-2.78 7 2.48V19Z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0H5A5 5 0 0 0 0 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5Zm-11 19H5V8h3v11ZM6.5 6.7A1.75 1.75 0 1 1 6.5 3.2a1.75 1.75 0 0 1 0 3.5ZM20 19h-3v-5.6c0-3.37-4-3.11-4 0V19h-3V8h3v1.8c1.4-2.59 7-2.78 7 2.48V19Z"/></svg>
         LinkedIn
       </a>
       <a href="https://github.com/Sincx79" class="link-btn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.24c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.30 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0Z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.24c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0Z"/></svg>
         GitHub
       </a>
       <a href="https://twitter.com/Sincx79" class="link-btn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24H16.17l-5.21-6.82L4.99 21.75H1.68l7.73-8.84L1.25 2.25H8.08l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24H16.17l-5.21-6.82L4.99 21.75H1.68l7.73-8.84L1.25 2.25H8.08l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg>
         Twitter
       </a>
     </div>
     <p class="footer">The AI era is here, welcome to the adventure ✨</p>
   </div>
 
+  <!-- Sections -->
   <section class="section" id="what-is-ai">
     <h2>What is AI?</h2>
-    <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines: learning, reasoning, adaptation.</p>
+    <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines — learning, reasoning, adaptation.</p>
   </section>
   <section class="section" id="impact-of-ai">
     <h2>Impact of AI</h2>
@@ -289,7 +294,7 @@
     <p>From health to finance, art to agriculture — AI is applied everywhere.</p>
   </section>
   <section class="section" id="how-to-use-ai">
-    <h2>How to use AI</h2>
+    <h2>How to Use AI</h2>
     <p>Start small: use existing tools, learn prompts, experiment, build step by step.</p>
   </section>
 
@@ -319,14 +324,14 @@
           menuOverlay.classList.remove('open');
 
           if (item === homeBtn) {
-            // scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
             e.preventDefault();
           }
-          // For other items, default anchor scroll will occur
+          // For others, default anchor scroll will work
         });
       });
     })();
   </script>
+
 </body>
 </html>
