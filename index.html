@@ -25,6 +25,11 @@
       scroll-behavior: smooth;
     }
 
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
     body {
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Arial;
       color: var(--ink);
@@ -33,14 +38,18 @@
         radial-gradient(1000px 500px at 110% 120%, rgba(0,121,255,.20), transparent 60%),
         radial-gradient(800px 400px at -10% 120%, rgba(0,229,255,.12), transparent 60%),
         var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    /* Hero wrapper that ensures vertical centering */
     .hero-wrapper {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      width: 100%;
     }
 
     .container {
@@ -69,7 +78,6 @@
         drop-shadow(0 0 40px rgba(0,183,255,.18));
       animation: float 4s ease-in-out infinite;
     }
-
     @keyframes float {
       50% { transform: translateY(-6px); }
     }
@@ -96,7 +104,6 @@
       gap: 14px;
       justify-content: center;
     }
-
     .link-btn {
       display: inline-flex;
       align-items: center;
@@ -113,7 +120,6 @@
         0 0 60px rgba(0,229,255,.18);
       transition: .2s transform, .2s box-shadow, .2s filter;
     }
-
     .link-btn:hover {
       transform: translateY(-2px) scale(1.02);
       box-shadow:
@@ -122,7 +128,6 @@
         0 0 80px rgba(0,229,255,.25);
       filter: saturate(1.1);
     }
-
     .link-btn svg {
       width: 20px;
       height: 20px;
@@ -146,13 +151,11 @@
       justify-content: center;
       text-align: center;
     }
-
     .section h2 {
       font-size: 32px;
       margin-bottom: 20px;
       text-shadow: 0 0 10px rgba(0,229,255,.2);
     }
-
     .section p {
       max-width: 60ch;
       font-size: 18px;
@@ -172,7 +175,6 @@
       cursor: pointer;
       z-index: 1001;
     }
-
     .menu-toggle span {
       display: block;
       height: 4px;
@@ -180,15 +182,12 @@
       border-radius: 2px;
       transition: transform 0.3s, opacity 0.3s;
     }
-
     .menu-toggle.open span:nth-child(1) {
       transform: translateY(10px) rotate(45deg);
     }
-
     .menu-toggle.open span:nth-child(2) {
       opacity: 0;
     }
-
     .menu-toggle.open span:nth-child(3) {
       transform: translateY(-10px) rotate(-45deg);
     }
@@ -200,7 +199,6 @@
       display: none;
       z-index: 1000;
     }
-
     .menu-overlay.open {
       display: block;
     }
@@ -213,7 +211,6 @@
       flex-direction: column;
       gap: 12px;
     }
-
     .menu-item {
       padding: 12px 24px;
       border-radius: 12px;
@@ -225,7 +222,6 @@
       transition: transform 0.2s, box-shadow 0.2s;
       white-space: nowrap;
     }
-
     .menu-item:hover {
       transform: translateY(-2px);
       box-shadow:
@@ -241,8 +237,7 @@
   </style>
 </head>
 <body>
-
-  <!-- Hamburger menu -->
+  <!-- Hamburger toggle -->
   <div class="menu-toggle" id="menuToggle">
     <span></span>
     <span></span>
@@ -260,7 +255,7 @@
     </div>
   </div>
 
-  <!-- Landing section -->
+  <!-- Hero / Landing -->
   <main class="hero-wrapper">
     <div class="container" id="top">
       <img class="hero-logo" src="./images/NUT_N_LOGO_.png" alt="NUT digital logo">
@@ -278,7 +273,7 @@
     </div>
   </main>
 
-  <!-- Sections -->
+  <!-- Content Sections -->
   <section class="section" id="what-is-ai">
     <h2>What is AI?</h2>
     <p>Artificial Intelligence (AI) refers to the simulation of human intelligence by machines — learning, reasoning, adaptation.</p>
@@ -300,7 +295,6 @@
     <p>Start small: use existing tools, learn prompts, experiment, build step by step.</p>
   </section>
 
-  <!-- Script for menu toggle and smooth scroll -->
   <script>
     (function(){
       const menuToggle = document.getElementById('menuToggle');
@@ -324,7 +318,6 @@
         item.addEventListener('click', (e) => {
           menuToggle.classList.remove('open');
           menuOverlay.classList.remove('open');
-
           if (item === homeBtn) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             e.preventDefault();
@@ -333,6 +326,5 @@
       });
     })();
   </script>
-
 </body>
 </html>
